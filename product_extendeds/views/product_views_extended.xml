@@ -1,0 +1,53 @@
+<odoo>
+  <data>
+    <record id="product_template_tree_view_hederada" model="ir.ui.view">
+        <field name="name">product.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="before">
+                <field name="benefit_margin" />
+                    
+            </field>
+        </field>
+    </record>
+    <record id="product_template_form_view_extended" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="after">
+                <page name="calculation_price" string="Price calculation">
+
+                            <group>
+                                <group name="data_costs">
+
+                                    <field name="price_purchase"/>
+                                    <field name="price_sale"/>
+                                    <field name="price_sale_tax"/>
+                                    <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="benefit_margin" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    
+                                </group>
+                                <group name="price_values">
+                                    
+
+                                    <field name="margin" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                                    
+                                    <field name="tax" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                                    
+                                    <label for="standard_price" groups="base.group_user"/>
+                                    <div name="standard_price_uom" groups="base.group_user">
+                                        <field name="standard_price" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                                    </div>
+                                </group>
+                            </group>
+                    
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    
+  </data>
+</odoo>
